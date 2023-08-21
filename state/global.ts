@@ -12,7 +12,6 @@ export type StateUser = {
 };
 
 export enum Currency {
-  USD,
   ETH,
 }
 
@@ -24,21 +23,11 @@ function useGlobal(initialState: StateUser = constants.COBIE) {
   const [user, setUser] = useState<StateUser>(initialState);
   // Currency
   const [currency, setCurrency] = useState<Currency>(Currency.ETH);
-  // ETH Price
-  const [eth, setEth] = useState<number>(0);
   // Favorites
   const [favorites, setFavorites] = useState<Record<string, StateUser>>({});
 
   // On page load
   useEffect(() => {
-    // Load eth price
-    async function collectEthPrice() {
-      const {data} = await axios.get("/api/eth");
-      setEth(data);
-    }
-
-    collectEthPrice();
-
     // Load favorites from local storage
     const localFavorites = localStorage.getItem("friendswap_favorites");
     if (localFavorites) setFavorites(JSON.parse(localFavorites));
@@ -78,7 +67,6 @@ function useGlobal(initialState: StateUser = constants.COBIE) {
     user.address in favorites ? removeFavorite(user) : addFavorite(user);
 
   return {
-    eth,
     user,
     setUser,
     currency,
