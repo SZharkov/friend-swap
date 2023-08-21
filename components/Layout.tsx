@@ -29,8 +29,8 @@ export default function Layout({
 
 function Meta() {
   const meta = {
-    url: "https://friendswap.alphador.ai",
-    image: "https://friendswap.alphador.ai/meta.png",
+    url: "https://friend-swap.vercel.app",
+    image: "https://friend-swap.vercel.app/meta.png",
     title: "FriendSwap | Quickly swap shares on friend.tech",
     description:
       "FriendSwap is a platform for buying and selling shares on friend.tech. Created by Alphador.",
