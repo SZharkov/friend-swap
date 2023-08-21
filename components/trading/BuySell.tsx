@@ -1,6 +1,6 @@
 import Card from "components/Card";
 import Address from "components/Address";
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Input } from "components/ui/input";
 import { Button } from "components/ui/button";
 import { ABI, CONTRACT_ADDRESS } from "utils";
