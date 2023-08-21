@@ -17,7 +17,7 @@ export enum Currency {
 
 function useGlobal(initialState: StateUser = constants.COBIE) {
   // Routing
-  const {push} = useRouter();
+  const {push, query} = useRouter();
 
   // Default: @cobie
   const [user, setUser] = useState<StateUser>(initialState);
@@ -36,8 +36,8 @@ function useGlobal(initialState: StateUser = constants.COBIE) {
   // Update query params on user change
   useEffect(() => {
     // Shallow update url
-    push(`/?address=${user.address}`, undefined, {shallow: true});
-  }, [push, user.address]);
+    push(`/?address=${query.address}`, undefined, {shallow: true});
+  }, [push, query]);
 
   /**
    * Track favorite user

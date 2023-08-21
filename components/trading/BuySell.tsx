@@ -59,7 +59,7 @@ export default function BuySell() {
 
   const handleSearch = (e) => {
     setUser({
-      address: e.target.elements.shareAddress.value,
+      address: e.target.elements.address.value,
       username: "",
       image: ""
     })
@@ -68,7 +68,7 @@ export default function BuySell() {
   return (
     <>
       <form onSubmit={handleSearch} className="flex max-sm:flex-wrap items-center gap-1 mb-4">
-        <Input name="shareAddress" defaultValue={user.address} className="text-base h-12"/>
+        <Input name="address" defaultValue={user.address} className="text-base h-12"/>
         <Button className="h-12 max-sm:w-full" type="submit">Search</Button>
       </form>
 
@@ -216,7 +216,7 @@ export default function BuySell() {
         Join me on friend.tech
       </p>
       <p className="mt-4 text-xs text-center"><a className="underline"
-                                                 href="https://twitter.com/zharkov_crypto"
+                                                 href="https://github.com/SZharkov/friend-swap"
                                                  rel="noreferrer"
                                                  target="_blank">Open Source</a></p>
     </>
