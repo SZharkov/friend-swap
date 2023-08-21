@@ -36,8 +36,8 @@ function useGlobal(initialState: StateUser = constants.COBIE) {
   // Update query params on user change
   useEffect(() => {
     // Shallow update url
-    push(`/?address=${query.address}`, undefined, {shallow: true});
-  }, [push, query]);
+    push(`/?address=${user.address}`, undefined, {shallow: true});
+  }, [push, user]);
 
   /**
    * Track favorite user
