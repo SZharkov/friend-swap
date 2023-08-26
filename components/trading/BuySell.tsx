@@ -74,19 +74,8 @@ export default function BuySell() {
 
       <Card title="Buy/Sell">
         <div className="h-full p-4">
-          {!isConnected ? (
-            // Not connected state
-            <div
-              className="flex flex-col items-center justify-center h-full border border-dashed rounded-md">
-              <ButtonIcon className="w-12 h-12 text-zinc-500"/>
-              <span className="text-zinc-500">Connect wallet to trade</span>
-              <div className="mt-4">
-                <ConnectButton/>
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col h-full gap-3">
-              <div>
+          <div className="flex flex-col h-full gap-3">
+            <div>
               <span className="flex flex-wrap gap-2 break-word text-sm items-center">
                 You own {Number(ownedAmount ?? 0)} share(s) of{" "}
                 <span>
@@ -97,110 +86,108 @@ export default function BuySell() {
                   />
                 </span>
               </span>
-              </div>
-
-              {/* Buy shares */}
-              <Card title="Buy shares">
-                <div className="p-2">
-                  <Input value={buy} disabled/>
-
-                  <div className="flex [&>button]:flex-1 gap-3 mt-3">
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        if (buy > 0) setBuy((previous) => previous - 1);
-                      }}
-                      disabled={buy === 0}
-                    >
-                      -
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() => setBuy((previous) => previous + 1)}
-                    >
-                      +
-                    </Button>
-                  </div>
-
-                  <Button
-                    className="mt-2 w-full bg-buy hover:bg-buy hover:opacity-70"
-                    onClick={() => executeBuy()}
-                    disabled={buy === 0 || buyLoading}
-                  >
-                    {buyLoading ? (
-                      <div className="flex items-center">
-                        <SymbolIcon className="h-4 w-4 animate-spin"/>
-                        <span className="pr-2">Executing buy...</span>
-                      </div>
-                    ) : (
-                      <span>
-                      Buy {buy} share(s){" "}
-                        {buyPrice
-                          ? `for ${(Number(buyPrice) / 1e18).toFixed(6)} Ξ`
-                          : ""}
-                    </span>
-                    )}
-                  </Button>
-                </div>
-              </Card>
-
-              {/* Sell shares */}
-              <Card title="Sell shares">
-                <div className="p-2">
-                  <Input value={sell} disabled/>
-
-                  <div className="flex [&>button]:flex-1 gap-3 mt-3">
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        if (sell > 0) setSell((previous) => previous - 1);
-                      }}
-                      disabled={sell === 0}
-                    >
-                      -
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setSell((previous) => previous + 1);
-                        // if (sell < Number(ownedAmount ?? 0)) {
-                        //   setSell((previous) => previous + 1);
-                        // }
-                      }}
-                      // disabled={sell >= Number(ownedAmount ?? 0)}
-                    >
-                      +
-                    </Button>
-                  </div>
-
-                  <Button
-                    className="mt-2 w-full bg-sell hover:bg-sell hover:opacity-70"
-                    onClick={() => executeSell()}
-                    disabled={sell === 0 || sellLoading}
-                  >
-                    {sellLoading ? (
-                      <div className="flex items-center">
-                        <SymbolIcon className="h-4 w-4 animate-spin"/>
-                        <span className="pr-2">Executing sell...</span>
-                      </div>
-                    ) : (
-                      <span>
-                      Sell {sell} share(s){" "}
-                        {sellPrice
-                          ? `
-    for ${(Number(sellPrice) / 1e18).toFixed(6)} Ξ`
-                          :
-                          ""
-                        }
-  </span>
-                    )
-                    }
-                  </Button>
-                </div>
-              </Card>
             </div>
-          )
-          }
+
+            {/* Buy shares */}
+            <Card title="Buy shares">
+              <div className="p-2">
+                <Input value={buy} disabled/>
+
+                <div className="flex [&>button]:flex-1 gap-3 mt-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      if (buy > 0) setBuy((previous) => previous - 1);
+                    }}
+                    disabled={buy === 0}
+                  >
+                    -
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => setBuy((previous) => previous + 1)}
+                  >
+                    +
+                  </Button>
+                </div>
+
+                <Button
+                  className="mt-2 w-full bg-buy hover:bg-buy hover:opacity-70"
+                  onClick={() => executeBuy()}
+                  disabled={buy === 0 || buyLoading}
+                >
+                  {buyLoading ? (
+                    <div className="flex items-center">
+                      <SymbolIcon className="h-4 w-4 animate-spin"/>
+                      <span className="pr-2">Executing buy...</span>
+                    </div>
+                  ) : (
+                    <span>
+                      Buy {buy} share(s){" "}
+                      {buyPrice
+                        ? `for ${(Number(buyPrice) / 1e18).toFixed(6)} Ξ`
+                        : ""}
+                    </span>
+                  )}
+                </Button>
+              </div>
+            </Card>
+
+            {/* Sell shares */}
+            <Card title="Sell shares">
+              <div className="p-2">
+                <Input value={sell} disabled/>
+
+                <div className="flex [&>button]:flex-1 gap-3 mt-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      if (sell > 0) setSell((previous) => previous - 1);
+                    }}
+                    disabled={sell === 0}
+                  >
+                    -
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setSell((previous) => previous + 1);
+                      // if (sell < Number(ownedAmount ?? 0)) {
+                      //   setSell((previous) => previous + 1);
+                      // }
+                    }}
+                    // disabled={sell >= Number(ownedAmount ?? 0)}
+                  >
+                    +
+                  </Button>
+                </div>
+
+                <Button
+                  className="mt-2 w-full bg-sell hover:bg-sell hover:opacity-70"
+                  onClick={() => executeSell()}
+                  disabled={sell === 0 || sellLoading}
+                >
+                  {sellLoading ? (
+                    <div className="flex items-center">
+                      <SymbolIcon className="h-4 w-4 animate-spin"/>
+                      <span className="pr-2">Executing sell...</span>
+                    </div>
+                  ) : (
+                    <span>
+                      Sell {sell} share(s){" "}
+                      {sellPrice
+                        ? `
+    for ${(Number(sellPrice) / 1e18).toFixed(6)} Ξ`
+                        :
+                        ""
+                      }
+  </span>
+                  )
+                  }
+                </Button>
+              </div>
+            </Card>
+          </div>
         </div>
       </Card>
 
